@@ -9,8 +9,18 @@
 
 <body>
     <div id="app">
-        <ul>
+        <input type="text" v-model="tval">
+        <button @click="add">添加</button>
+
+        <!-- 遍历数组 -->
+        <!-- <ul>
             <li v-for="item in arr">{{item}}</li>
+        </ul> -->
+        <!-- 遍历对象 -->
+        <ul>
+            <li v-for="item in infos" :key="item.id">
+                <input type="checkbox">{{item.name}}
+            </li>
         </ul>
     </div>
 
@@ -20,8 +30,28 @@
 <script>
     var a = new Vue({
         el: "#app ",
+        newid: 2,
         data: {
-            arr: ["RE:0", "骨王", "黑执事"]
+            tval: "",
+            arr: ["RE:0", "骨王", "黑执事"],
+            infos: [{
+                id: 1,
+                name: "ligy",
+                age: "23"
+            }, {
+                id: 2,
+                name: "liyt",
+                age: "25"
+            }]
+        },
+        methods: {
+            add() {
+                this.infos.splice(2, 0, {
+                    id: ++this.newid,
+                    name: this.tval,
+                    age: 20
+                });
+            }
         },
     });
 </script>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul v-if="isshow&&!a">
+            <li>{{msg}}</li>
+            <li>{{msg}}</li>
+            <li>{{msg}}</li>
+            <li>{{msg}}</li>
+            <li>{{msg}}</li>
+        </ul>
+        <ul v-else-if="a">
+            <li>{{elseif}}</li>
+        </ul>
+        <ul v-else>
+            <li>{{elsea}}</li>
+        </ul>
+        <button @click="show">显示/隐藏</button>
+        <button @click="setA">显示/隐藏A</button>
+    </div>
+
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    var a = new Vue({
+        el: "#app ",
+        data: {
+            isshow: true,
+            msg: "内容",
+            elseif: "这是elseif",
+            elsea: "这是else",
+            a: false
+        },
+        methods: {
+            show() {
+                this.isshow = !this.isshow;
+            },
+            setA() {
+                this.a = !this.a;
+            }
+        },
+    });
+</script>
+
+</html>

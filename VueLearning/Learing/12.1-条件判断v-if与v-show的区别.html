@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- 区别是if将元素删除/添加   show对元素怎么样式 display:none/block -->
+    <div id="app">
+        <li v-if="isshow" id="if">if</li>
+        <li v-show="isshow" id="show">show</li>
+    </div>
+
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    var a = new Vue({
+        el: "#app ",
+        data: {
+            isshow: false,
+        },
+    });
+</script>
+
+</html>
