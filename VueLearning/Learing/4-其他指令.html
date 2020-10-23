@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+
+<body>
+    <!-- v-once -->
+    <div id="once">
+        <li v-once>{{msg}}</li>
+        <button v-on:click="tryChange()">+</button>
+    </div>
+
+    <!-- v-pre -->
+    <div id="pre" v-pre>{{msg}}</div>
+
+    <!-- v-html -->
+    <div id="h" v-html="html"></div>
+
+    <!-- v-text -->
+    <div id="t" v-text="msg"></div>
+
+    <!-- v-cloak -->
+    <div id="ck" v-cloak>{{msg}}</div>
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    //v-once 只在第一次显示,再次改变不变同步到前端
+    var once = new Vue({
+        el: "#once ",
+        data: {
+            msg: "初始化显示"
+        },
+        methods: {
+            tryChange: function() {
+                this.msg = "改变显示";
+                alert(this.msg);
+            }
+        },
+    });
+
+    //v-pre 不显示mustache语法的内容
+    var pre = new Vue({
+        el: "#pre",
+        data: {
+            msg: "不显示"
+        }
+    });
+
+    //v-html 显示html渲染html标签
+    var html = new Vue({
+        el: "#h",
+        data: {
+            html: "<li>li里面的数据</li>"
+        }
+    });
+
+    //v-text 可代替mustache
+    var t = new Vue({
+        el: "#t",
+        data: {
+            msg: "text的内容"
+        }
+    });
+
+    //v-cloak 该属性在Vue独显加载完成后会被删除
+    setTimeout(function() {
+        var ck = new Vue({
+            el: "#ck",
+            data: {
+                msg: "ck的内容"
+            }
+        });
+    }, 2000);
+</script>
+
+</html>

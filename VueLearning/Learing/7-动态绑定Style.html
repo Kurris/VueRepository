@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+
+        <!-- key:value -->
+        <!-- value必须是字符串,否则会被Vue对象当成变量检查 -->
+        <li :style="{fontSize:'50px',color:'red'}">{{obj}}</li>
+
+        <li :style="[style1,style2]">{{arr}}</li>
+    </div>
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    var a = new Vue({
+        el: "#app ",
+        data: {
+            obj: "对象方式",
+            arr: "数组的方式",
+            style1: {
+                background: "blue"
+            },
+            style2: {
+                fontSize: "200px"
+            }
+        }
+    });
+</script>
+
+</html>

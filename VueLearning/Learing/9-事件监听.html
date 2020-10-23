@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <li>{{msg}}</li>
+        <!-- 原始写法 -->
+        <!-- <button v-on:click="changeinfo()">改变信息</button> -->
+        <!-- 简写 -->
+        <!-- <button @click="changeinfo">改变信息</button> -->
+
+        <!-- 有参数 -->
+        <!-- 如果不传值,那么参数就是默认为window 的mousevent -->
+        <!-- <button @click="changeinfo">改变信息</button> -->
+        <!-- 有参数就传入参数 -->
+        <!-- <button @click="changeinfo(213)">改变信息</button> -->
+        <!-- 如果需要参数和鼠标事件,$event是固定写法 -->
+        <button @click="changeinfo(213,$event)">改变信息</button>
+    </div>
+
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    var a = new Vue({
+        el: "#app ",
+        data: {
+            msg: "信息显示"
+        },
+        methods: {
+            changeinfo(str, event) {
+                this.msg = str;
+                console.log(event);
+            }
+        },
+    });
+</script>
+
+</html>

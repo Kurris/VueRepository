@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li>{{fullName}}</li>
+        </ul>
+    </div>
+
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    var a = new Vue({
+        el: "#app ",
+        data: {
+            firstName: "国扬",
+            lastName: "李"
+        },
+
+        // 计算属性有结果缓存
+        // 写法1
+        // 
+        // computed: {
+        //     fullName: function() {
+        //         return this.lastName + this.firstName;
+        //     }
+        // },
+        // 写法2
+
+        // computed: {
+        //     fullName: {
+        //         get: function() {
+        //             return this.lastName + this.firstName;
+        //         },
+        //         set: function() {
+
+        //         }
+        //     }
+        // },
+        // 写法3 ES6
+
+        computed: {
+            fullName: {
+                get() {
+                    return this.lastName + this.firstName;
+                },
+                set() {
+
+                }
+            }
+        },
+    });
+</script>
+
+</html>

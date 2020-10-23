@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- stop用于阻止冒泡 -->
+    <div id="app" @click="divclick">
+        <div>
+            <button @click.stop="btnclick">按钮</button>
+        </div>
+        <br>
+
+        <!-- prevent用于阻止默认行为 -->
+        <form action="baidu">
+            <input type="submit" value="提交" @click.stop.prevent="submitA()">
+        </form>
+    </div>
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    var a = new Vue({
+        el: "#app ",
+        methods: {
+            divclick() {
+                console.log("div");
+            },
+            btnclick() {
+                console.log("btn");
+            },
+            submitA() {
+                console.log("自己的提交行为");
+            },
+            keyup() {
+                console.log("keyup");
+            }
+        },
+    });
+</script>
+
+</html>
