@@ -38,25 +38,28 @@
                     <th>date</th>
                     <th>price</th>
                     <th>count</th>
+                    <th>total price</th>
                     <th>operation</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in books">
+                <tr v-for="(item,index) in books">
                     <td>{{item.id}}</td>
                     <td>{{item.name}}</td>
                     <td>{{item.date}}</td>
-                    <td>{{item.price}}</td>
+                    <td>{{item.price|showfinal}}</td>
                     <td>
-                        <button @click="this.count++">-</button> {{item.count}}
-                        <button>+</button>
+                        <button @click="decreatment(item)" :disabled="item.count<=1">-</button> {{item.count}}
+                        <button @click="increatment(item)">+</button>
                     </td>
+                    <td>{{item.price * item.count | showfinal}}</td>
                     <td>
-                        <button>remove</button>
+                        <button @click="removeitem(index)">remove</button>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <h2>总价:{{totalprice}}</h2>
     </div>
 </body>
 
@@ -67,16 +70,42 @@
         data: {
             books: [{
                 id: 0,
-                name: "yuwen",
-                date: "20202-10-26",
+                name: "chinese",
+                date: "2020-10-26",
                 price: 230,
-                count: 0
+                count: 1
+            }, {
+                id: 1,
+                name: "math",
+                date: "2020-10-26",
+                price: 300,
+                count: 1
             }]
         },
-        computed: {
-            allprice: function() {
-
+        methods: {
+            increatment(obj) {
+                obj.count++;
+            },
+            decreatment(obj) {
+                obj.count--;
+            },
+            removeitem(index) {
+                this.books.splice(index, 1)
             }
+        },
+        filters: {
+            showfinal(price) {
+                return "¥" + price.toFixed(2);
+            }
+        },
+        computed: {
+            totalprice() {
+                let totalprices = 0;
+                for (let index = 0; index < this.books.length; index++) {
+                    totalprices += this.books[index].price * this.books[index].count;
+                }
+                return totalprices;
+            },
         },
     });
 </script>
