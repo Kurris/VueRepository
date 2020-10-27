@@ -17,7 +17,7 @@
     <!-- v-once -->
     <div id="once">
         <li v-once>{{msg}}</li>
-        <button v-on:click="tryChange()">+</button>
+        <button v-on:click="tryChange">+</button>
     </div>
 
     <!-- v-pre -->
@@ -26,10 +26,10 @@
     <!-- v-html -->
     <div id="h" v-html="html"></div>
 
-    <!-- v-text -->
+    <!-- v-text 等同于mustash语法{{}}-->
     <div id="t" v-text="msg"></div>
 
-    <!-- v-cloak -->
+    <!-- v-cloak 可以设置样式,等待Vue对象加载完成-->
     <div id="ck" v-cloak>{{msg}}</div>
 </body>
 

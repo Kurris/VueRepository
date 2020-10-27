@@ -13,11 +13,14 @@
         <button @click="add">添加</button>
 
         <!-- 遍历数组 -->
-        <!-- <ul>
+        <ul>
             <li v-for="item in arr">{{item}}</li>
-        </ul> -->
+        </ul>
+
+
         <!-- 遍历对象 -->
         <ul>
+            <!-- Key的重要性 -->
             <li v-for="item in infos" :key="item.id">
                 <input type="checkbox">{{item.name}}
             </li>

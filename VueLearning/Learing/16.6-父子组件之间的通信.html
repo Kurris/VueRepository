@@ -7,9 +7,16 @@
     <title>Document</title>
 </head>
 
+<template id="tmp">
+    <div>
+       <button v-for="item in categories" @click="btnclick(item)">{{item.name}}</button>
+       <h2>你喜欢的游戏:{{gametype}}</h2>
+    </div>
+</template>
+
 <body>
     <div id="app">
-        <cpn2 v-bind:t="title" v-bind:c="content"></cpn2>
+        <cpn2 @typeselect="pevent" :gametype="selectedgame"></cpn2>
     </div>
 </body>
 
@@ -18,34 +25,58 @@
     const App = new Vue({
         el: "#app",
         data: {
-            // title: "标题",
-            // content: "内容",
+            selectedgame: "",
+        },
+        methods: {
+            pevent(item) {
+                this.selectedgame = item.name;
+            }
         },
         components: {
             cpn2: {
-                props: // {
+                template: "#tmp",
+                props: {
+
+                    gametype: {
+                        type: String,
+                        default: "无",
+                        required: true,
+                    },
+                },
+
+                //父传子写法,通过props
+                // {
                 //     t: String,
                 //     c: String,
                 // }, 
                 //["t", "c"],
-                {
-                    t: {
-                        type: String,
-                        default: "AAA"
-                    },
-                    C: {
-                        type: String,
-                        default () {
-                            return "BBB"
-                        },
+                // c: {
+                //     type: String, //如果此处是object类型,那么default必须返回一个对象
+                //     default () {
+                //         return "BBB"
+                //     },
+                //     required: true,
+                // }
+
+                data() {
+                    return {
+                        categories: [{
+                            id: 0,
+                            name: "FPS"
+                        }, {
+                            id: 1,
+                            name: "ACT"
+                        }, {
+                            id: 2,
+                            name: "MOBA"
+                        }]
                     }
                 },
-                template: `
-                 <div>   
-                    <h2>{{t}}</h2>
-                    <p>{{c}}</p>
-                </div>
-                        `,
+                methods: {
+                    btnclick(item) {
+                        this.$emit('typeselect', item)
+                    }
+                },
             }
         }
     });
