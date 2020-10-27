@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <cpn2></cpn2>
+    </div>
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    // 原则: 在哪里注册就在哪里使用
+
+    // 子组件
+    const c1 = Vue.extend({
+        template: `
+        <div>   
+            <h2>Title1</h2>
+            <p>this is content1</p>
+        </div>
+        `
+    });
+
+    // 父组件
+    const c2 = Vue.extend({
+        template: `
+        <div>   
+            <h2>Title2</h2>
+            <p>this is content2</p>
+            <cpn1></cpn1>
+        </div>
+        `,
+        components: {
+            cpn1: c1,
+        }
+    });
+
+
+    const App = new Vue({
+        el: "#app",
+        components: {
+            cpn2: c2,
+        }
+    });
+</script>
+
+</html>

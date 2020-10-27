@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <c2></c2> -->
+    </div>
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    // 第一种写法,全局注册,没有语法糖
+    const c1 = Vue.extend({
+        template: `
+        <div>
+            <input type="text">
+        </div>
+        `
+    });
+    Vue.component("c1", c1)
+
+
+    // 第二种写法,直接使用对象传入组件注册,内部其实还是使用Vue.extend()
+    Vue.component("c2", {
+        template: `
+        <div>
+            <input type="text">
+        </div>
+        `
+    })
+
+    // 一个Vue对象其实就是root节点
+    var a = new Vue({
+        el: "#app ",
+        components: {
+            c3: {
+                template: `
+                         <div>
+                          <input type="text">
+                          </div>
+                            `
+            },
+        }
+    });
+</script>
+
+</html>

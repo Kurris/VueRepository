@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <cpn2 v-bind:t="title" v-bind:c="content"></cpn2>
+    </div>
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    const App = new Vue({
+        el: "#app",
+        data: {
+            // title: "标题",
+            // content: "内容",
+        },
+        components: {
+            cpn2: {
+                props: // {
+                //     t: String,
+                //     c: String,
+                // }, 
+                //["t", "c"],
+                {
+                    t: {
+                        type: String,
+                        default: "AAA"
+                    },
+                    C: {
+                        type: String,
+                        default () {
+                            return "BBB"
+                        },
+                    }
+                },
+                template: `
+                 <div>   
+                    <h2>{{t}}</h2>
+                    <p>{{c}}</p>
+                </div>
+                        `,
+            }
+        }
+    });
+</script>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<template id="t1">
+    <div>
+        当前计数:{{count}}
+        <button @click="add">+</button>
+        <button @click="sub">-</button>
+    </div>
+</template>
+
+<body>
+    <div id="app">
+        <c1></c1>
+        <c1></c1>
+        <c1></c1>
+    </div>
+</body>
+
+
+<script src="./js/vue.js "></script>
+<script>
+    var a = new Vue({
+        el: "#app ",
+        components: {
+            c1: {
+                template: "#t1",
+                data() {
+                    // 组件复用,需要使用不同的数据对象,如果对象都是一致,那么数据会产生不必要的联动
+                    return {
+                        count: 0,
+                    }
+                },
+                methods: {
+                    add() {
+                        this.count++;
+                    },
+                    sub() {
+                        this.count--;
+                    }
+                },
+            }
+        }
+    });
+</script>
+
+</html>

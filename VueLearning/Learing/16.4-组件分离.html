@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<!-- 第一种写法 -->
+<!-- <script type="text/x-template" id="t1">
+    <div>
+         <h2>标题</h2>
+       <p>内容</p>
+    </div>
+</script> -->
+
+
+<!-- 第二种写法,是最常见的 -->
+<template id="t1">
+    <div>
+       <h2>{{title}}</h2>
+       <p>{{content}}</p>
+    </div>
+</template>
+
+<body>
+    <div id="app">
+        <c1></c1>
+    </div>
+</body>
+
+
+<script src="./js/vue.js "></script>
+<script>
+    var a = new Vue({
+        el: "#app ",
+        components: {
+            c1: {
+                template: "#t1",
+                data() {
+                    return {
+                        title: "绑定标题",
+                        content: "绑定内容"
+                    }
+                },
+            }
+        }
+    });
+</script>
+
+</html>
