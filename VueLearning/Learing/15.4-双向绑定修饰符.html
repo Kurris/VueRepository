@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- lazy 默认在回车或者失去焦点的时候同步数据 -->
+        <input type="text" v-model.lazy="msg"> {{msg}} <br>
+
+        <!--  v-model默认同步数据为string类型,加上number则自己转换-->
+        <input type="number" v-model.number="age"> {{age}} 数据类型:{{typeof age}}<br>
+
+        <!-- 自动将空格移除 -->
+        <input type="text" v-model.trim="msg">
+
+    </div>
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    var a = new Vue({
+        el: "#app ",
+        data: {
+            msg: "AAA",
+            age: 0, //'',
+        }
+    });
+</script>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <my-cpn></my-cpn>
+
+        <!-- 无效  -->
+        <!-- <cpn1></cpn1> -->
+    </div>
+
+
+    <div id="app1">
+        <my-cpn></my-cpn>
+        <cpn1></cpn1>
+    </div>
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    const cpn = Vue.extend({
+        template: `
+        <div>
+            <input type="text">
+        </div>
+        `
+    });
+
+    //全局组件
+    Vue.component("my-cpn", cpn);
+
+    var a = new Vue({
+        el: "#app ",
+    });
+
+
+    //局部组件
+    const cpn1 = Vue.extend({
+        template: `
+        <div>
+            <input type="checkbox">
+        </div>
+        `
+    });
+
+    //在Vue对象中注册局部组件
+    var a1 = new Vue({
+        el: "#app1 ",
+        components: {
+            cpn1: cpn1
+        }
+    });
+</script>
+
+</html>

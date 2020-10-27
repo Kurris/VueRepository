@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <my-cpn>1</my-cpn>
+        <my-cpn>2</my-cpn>
+        <my-cpn>3</my-cpn>
+    </div>
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    const cpn = Vue.extend({
+        template: `
+        <div>
+            <input type="text">
+        </div>
+        `
+    });
+
+    Vue.component("my-cpn", cpn)
+    var a = new Vue({
+        el: "#app ",
+        data: {
+            msg: "AAA",
+            age: 0,
+        }
+    });
+</script>
+
+</html>

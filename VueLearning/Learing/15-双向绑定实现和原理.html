@@ -9,8 +9,10 @@
 
 <body>
     <div id="app">
-        <li>{{msg}}</li>
-        <input type="text" v-model:value="msg">
+        <!-- Vue实现的双向绑定 -->
+        <input type="text" v-model="msg">
+        <!-- 原生html的双向绑定 -->
+        <input type="text" :value="msg" @input="msg=$event.target.value"> {{msg}}
     </div>
 </body>
 
@@ -19,7 +21,7 @@
     var a = new Vue({
         el: "#app ",
         data: {
-            msg: "信息显示"
+            msg: "AAA"
         }
     });
 </script>

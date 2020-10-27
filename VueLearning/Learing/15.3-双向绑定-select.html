@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <div id="app">
+        <!-- 1 -->
+        <select v-model="word">
+            <option v-for="item in words" :value="item">{{item}}</option>  
+        </select>
+        <h2>你选择了{{word}}</h2>
+
+        <!-- 2 -->
+        <select v-model="selected" multiple>
+        <option v-for="item in words" :value="item">{{item}}</option>   
+        </select>
+        <h2>你选择了{{selected}}</h2>
+
+    </div>
+    </div>
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    var a = new Vue({
+        el: "#app ",
+        data: {
+            msg: "AAA",
+            word: "A",
+            words: ["A", "B", "C", "D"],
+            selected: [],
+        }
+    });
+</script>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <!-- 单选 -->
+        <label for="license">
+            <input type="checkbox" id="license" v-model="isAgree">同意
+        </label>
+        <button :disabled="!isAgree">下一步</button>
+        <h2>你选择了{{isAgree}}</h2>
+
+
+        <!-- 多选 -->
+        <input type="checkbox" value="A" v-model="hoblies">A
+        <input type="checkbox" value="B" v-model="hoblies">B
+        <input type="checkbox" value="C" v-model="hoblies">C
+        <input type="checkbox" value="D" v-model="hoblies">D
+        <br>
+        <h2>你选择了{{hoblies}}</h2>
+
+
+        <!-- 多选,循环的方式 -->
+        <label v-for="item in originHoblies" for="item">
+            <input type="checkbox" :value="item" :id="item" v-model="hoblies">{{item}}
+        </label>
+    </div>
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    var a = new Vue({
+        el: "#app ",
+        data: {
+            msg: "AAA",
+            isAgree: false,
+            hoblies: [],
+            originHoblies: ["A", "B", "C", "D", "E"],
+        }
+    });
+</script>
+
+</html>
