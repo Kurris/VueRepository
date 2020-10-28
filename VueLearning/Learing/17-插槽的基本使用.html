@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<template id="tmp">
+    <div>   
+        <h2>Title1</h2>
+        <p>this is content1</p>
+        <!-- 此处可以默认为按钮,如果外部使用没有声明内容,则该插槽以按钮为默认 -->
+        <slot><button>button</button></slot>
+    </div>
+</template>
+
+<body>
+    <div id="app">
+        <cpn></cpn>
+        <cpn>
+            <h2>这是插槽</h2>
+        </cpn>
+    </div>
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    const App = new Vue({
+        el: "#app",
+        methods: {
+            btnclick() {
+                // console.log(this.$children);
+                console.log(this.$refs);
+            },
+        },
+        components: {
+            cpn: {
+                template: "#tmp",
+            }
+        }
+    });
+</script>
+
+</html>

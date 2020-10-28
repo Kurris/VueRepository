@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<template id="tmp">
+    <div>   
+       <slot name="left"> <h2>Title1</h2></slot>
+        <slot name="mid"><p>this is content1</p></slot>
+        <slot name="right"><input type="text"></slot>
+        <slot><button>button</button></slot>
+    </div>
+</template>
+
+<body>
+    <div id="app">
+        <cpn>
+            <p slot="left">左边的插槽</p>
+        </cpn>
+        <cpn>
+            <h2>没有name的插槽</h2>
+        </cpn>
+    </div>
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    const App = new Vue({
+        el: "#app",
+        components: {
+            cpn: {
+                template: "#tmp",
+            }
+        }
+    });
+</script>
+
+</html>

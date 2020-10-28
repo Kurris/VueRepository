@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<template id="tmp">
+<div>
+   <slot name="a" :arr="arrlanguage">
+        <ul>
+            <li v-for="item in arrlanguage">{{item}}</li>
+        </ul>
+   </slot>
+</div>
+</template>
+
+<body>
+    <!--应用场景:当数据是存放在组件中,但是在父组件中,想要改变组件数据的展示方式-->
+
+    <div id="app">
+        <cpn>
+            <div slot="a" slot-scope="shuju">
+                <li>{{shuju.arr.join(" ⭐ ")}}</li>
+            </div>
+        </cpn>
+    </div>
+
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    var a = new Vue({
+        el: "#app ",
+        components: {
+            cpn: {
+                template: "#tmp",
+                data() {
+                    return {
+                        arrlanguage: ["Java", "C#", "C++", "Python"],
+                    }
+                },
+            }
+        }
+    });
+</script>
+
+</html>

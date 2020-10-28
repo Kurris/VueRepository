@@ -9,14 +9,14 @@
 
 <template id="tmp">
     <div>
-       <button v-for="item in categories" @click="btnclick(item)">{{item.name}}</button>
-       <h2>你喜欢的游戏:{{gametype}}</h2>
+       <button v-for="item in categories" @click="dgametype=item.name">{{item.name}}</button>
     </div>
 </template>
 
 <body>
     <div id="app">
-        <cpn2 @typeselect="pevent" :gametype="selectedgame"></cpn2>
+        <cpn2 @itemclick="pevent" :gametype="selectedgame"></cpn2>
+        <h2>喜欢的游戏类型:{{selectedgame}}</h2>
     </div>
 </body>
 
@@ -25,26 +25,25 @@
     const App = new Vue({
         el: "#app",
         data: {
-            selectedgame: "",
+            selectedgame: "FPS",
         },
         methods: {
             pevent(item) {
-                this.selectedgame = item.name;
+                this.selectedgame = item;
             }
         },
         components: {
             cpn2: {
                 template: "#tmp",
+
+                //父传子写法,通过props
                 props: {
 
                     gametype: {
                         type: String,
                         default: "无",
-                        required: true,
                     },
                 },
-
-                //父传子写法,通过props
                 // {
                 //     t: String,
                 //     c: String,
@@ -57,9 +56,9 @@
                 //     },
                 //     required: true,
                 // }
-
                 data() {
                     return {
+                        dgametype: this.gametype,
                         categories: [{
                             id: 0,
                             name: "FPS"
@@ -72,9 +71,10 @@
                         }]
                     }
                 },
-                methods: {
-                    btnclick(item) {
-                        this.$emit('typeselect', item)
+                watch: {
+                    dgametype(newval, oldval) {
+                        console.log(newval + "  " + oldval);
+                        this.$emit('itemclick', newval)
                     }
                 },
             }
