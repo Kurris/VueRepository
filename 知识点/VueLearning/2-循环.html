@@ -7,6 +7,20 @@
     <title>Document</title>
 </head>
 
+
+<!-- 
+1.循环使用 v-for="item in arr" ;
+  arr是data中的数据属性,item 是自定义名称,是arr的元素
+  如果arr是数字数组,那么item就是一个数字
+  如果arr里面是对象,那么item就是一个对象,访问对象中属性使用item.属性名
+
+2.循环需要标记一个Key
+  Vue中绑定属性使用 v-bind:属性名或者他的简写 :属性名;
+  绑定Key需要一个唯一值,为了将元素区分开;
+  下面的例子就是体现出Key的作用,如果没有Key,那么选择的元素会因为插入元素后,导致没有选中,反而该元素之前的索引位置的元素被选中了
+    
+ -->
+
 <body>
     <div id="app">
         <input type="text" v-model="tval">
