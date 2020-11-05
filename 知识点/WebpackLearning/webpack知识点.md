@@ -8,7 +8,7 @@
 
 - **安装本地webpack**
 
-  1. 到项目的根目录中输入    `npm install webpack@3.6.0 --save-dev`
+  1. 到项目的根目录中输入    `npm install webpack@版本号 --save-dev`
   2. 其中的 --save-dev指明webpack只在开发中使用,发布中将不再使用
 
 ## 打包
@@ -17,7 +17,7 @@
     1. 直接在终端输入 `webpack .\src\主要.js .\dist\bundle(打包后).js`
     2. 使用配置的方式
         - 初始化 package.json和package-lock.json文件 `npm init`
-        - 在项目根目录中创建webpack.config.js 文件
+        - 在项目根目录中创建webpack.config.js 文件,手动创建,添加一下代码
 
           ```js
           <!-- 导入node.js的path -->
@@ -33,7 +33,7 @@
           output: {
           path: path.resolve(__dirname, "dist"),
           filename: "bundle.js"
-            }
+            <!-- } -->
           }
           ```
 

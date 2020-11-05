@@ -17,10 +17,9 @@
 <body>
     <div id="app">
         <ul>
-            <li v-for="(val,index) in movies" :class="{active:currentIndex==index}" @click="setActive(index)">{{index+1}}.{{val}} </li>
+            <li v-for="(val,index) in infos" :class="{active:currentindex==index}" @click="currentindex=index">{{index+1}}.{{val}}</li>
         </ul>
     </div>
-
 </body>
 
 <script src="./js/vue.js "></script>
@@ -28,14 +27,10 @@
     var a = new Vue({
         el: "#app ",
         data: {
-            currentIndex: 0,
-            movies: ["千与千寻", "哈尔的移动城堡", "起风了", "天空之城"],
+            currentindex: 0,
+            infos: ["A", "B", "C", "D", "E"]
         },
-        methods: {
-            setActive(index) {
-                this.currentIndex = index;
-            }
-        },
+
     });
 </script>
 

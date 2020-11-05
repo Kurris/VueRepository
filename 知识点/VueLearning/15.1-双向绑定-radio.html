@@ -7,24 +7,20 @@
     <title>Document</title>
 </head>
 
-<style>
-    [v-cloak] {
-        display: none;
-    }
-</style>
-
 <body>
     <div id="app">
+        <!-- 
+1.原生radio需要标记相同的name,则会单选
+2.Vue中使用v-model绑定后同一个data属性后,name可以去掉
 
-        <!-- 原生radio需要标记相同的name,则会单选 -->
-        <!-- Vue中使用v-model绑定后,name可以去掉 -->
+ -->
         <label for="male">
-         <input type="radio" id="male" name="gender" value="女" v-model="selecetedGender">男
+         <input type="radio" id="male" name="gender" value="男" v-model="selecetedGender">男
         </label>
         <label for="female">
-         <input type="radio" id="female" name="gender" value="男" v-model="selecetedGender">女
+         <input type="radio" id="female" name="gender" value="女" v-model="selecetedGender">女
         </label>
-        <h2 v-cloak>{{selecetedGender}}</h2>
+        <h2>{{selecetedGender}}</h2>
     </div>
 </body>
 
@@ -34,7 +30,7 @@
         el: "#app ",
         data: {
             msg: "AAA",
-            selecetedGender: "",
+            selecetedGender: "男",
         }
     });
 </script>

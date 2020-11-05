@@ -7,16 +7,20 @@
     <title>Document</title>
 </head>
 
-<body>
+<!-- 
 
-    <!-- stop用于阻止冒泡 -->
+1. .stop用于阻止事件冒泡的发生
+2. .prevent用于阻止事件的默认行为,例如表单的提交
+
+ -->
+
+<body>
     <div id="app" @click="divclick">
         <div>
             <button @click.stop="btnclick">按钮</button>
         </div>
         <br>
 
-        <!-- prevent用于阻止默认行为 -->
         <form action="baidu">
             <input type="submit" value="提交" @click.stop.prevent="submitA()">
         </form>
@@ -29,17 +33,14 @@
         el: "#app ",
         methods: {
             divclick() {
-                console.log("div");
+                console.log("DIV的事件被触发");
             },
             btnclick() {
-                console.log("btn");
+                console.log("这是按钮");
             },
             submitA() {
-                console.log("自己的提交行为");
+                console.log("如果prevent没有生效,那么该按钮会有跳转");
             },
-            keyup() {
-                console.log("keyup");
-            }
         },
     });
 </script>

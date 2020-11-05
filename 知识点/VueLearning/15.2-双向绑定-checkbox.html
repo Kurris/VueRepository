@@ -22,20 +22,11 @@
         <button :disabled="!isAgree">下一步</button>
         <h2>你选择了{{isAgree}}</h2>
 
-
-        <!-- 多选 -->
-        <input type="checkbox" value="A" v-model="hoblies">A
-        <input type="checkbox" value="B" v-model="hoblies">B
-        <input type="checkbox" value="C" v-model="hoblies">C
-        <input type="checkbox" value="D" v-model="hoblies">D
-        <br>
-        <h2>你选择了{{hoblies}}</h2>
-
-
         <!-- 多选,循环的方式 -->
         <label v-for="item in originHoblies" for="item">
-            <input type="checkbox" :value="item" :id="item" v-model="hoblies">{{item}}
+            <input type="checkbox" :value="item"  :id="item" v-model="hoblies">{{item}}
         </label>
+        <h2>你选择了{{hoblies}}</h2>
     </div>
 </body>
 

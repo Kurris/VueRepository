@@ -24,13 +24,22 @@
     </div>
 </body>
 
+<!-- 
+
+    1.this.$children访问当前所有子组件
+    2.this.$refs访问所有子组件,如果在组件元素中标记ref="key",可以用过key来查找特定子组件
+    3.this.$root访问当前组件的根组件
+    4.this.$parent访问当前的父组件
+
+
+ -->
 <script src="./js/vue.js "></script>
 <script>
     const App = new Vue({
         el: "#app",
         methods: {
             btnclick() {
-                // console.log(this.$children);
+                console.log(this.$children);
                 console.log(this.$refs);
             },
         },

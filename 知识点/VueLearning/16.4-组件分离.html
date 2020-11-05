@@ -38,7 +38,9 @@
         el: "#app ",
         components: {
             c1: {
+                // 绑定模板
                 template: "#t1",
+                // 此处的data是方法的原因是组件单独维护自己的data中的数据
                 data() {
                     return {
                         title: "绑定标题",

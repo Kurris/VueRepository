@@ -17,20 +17,26 @@
 </style>
 
 <body>
+    <!-- 
+class 动态改变
 
-    <!-- 修改属性的方式 -->
-    <!-- <div id="app">
+
+1.修改data中属性的方式
+    <div id="app">
         <h2 :class="cl">nihao</h2>
         <button v-on:click="changetype">按钮</button>
-    </div> -->
+    </div> 
 
-    <!-- 字典对象的方法  {类名1:Bool,类名2:Bool} -->
-    <!-- <div id="app">
+
+2.字典对象的方法  {类名1:Bool,类名2:Bool}
+    <div id="app">
         <h2 :class="{active:isactive,back:isback}">nihao</h2>
         <button v-on:click="changetype">按钮</button>
-    </div> -->
+    </div>
+ -->
 
-    <!-- 数组的方式,并且可以使用方法 -->
+
+    <!--3 数组的方式,并且可以使用方法 -->
     <div id="app">
         <h2 :class="getClasses11">nihao</h2>
         <button v-on:click="changetype">按钮</button>

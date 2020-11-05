@@ -7,20 +7,21 @@
     <title>Document</title>
 </head>
 
+<!-- 原始写法 -->
+<!-- <button v-on:click="changeinfo()">改变信息</button> -->
+
+<!-- 简写 -->
+<!-- <button @click="changeinfo">改变信息</button> -->
+
+<!-- 有参数的情况下,如果不传值,那么参数就是默认为window 的 mousevent -->
+<!-- <button @click="changeinfo">改变信息</button> -->
+
+<!-- 如果需要参数和鼠标事件,$event是固定写法,代表window的mousevent -->
+<!-- <button @click="changeinfo(213)">改变信息</button> -->
+
 <body>
     <div id="app">
         <li>{{msg}}</li>
-        <!-- 原始写法 -->
-        <!-- <button v-on:click="changeinfo()">改变信息</button> -->
-        <!-- 简写 -->
-        <!-- <button @click="changeinfo">改变信息</button> -->
-
-        <!-- 有参数 -->
-        <!-- 如果不传值,那么参数就是默认为window 的mousevent -->
-        <!-- <button @click="changeinfo">改变信息</button> -->
-        <!-- 有参数就传入参数 -->
-        <!-- <button @click="changeinfo(213)">改变信息</button> -->
-        <!-- 如果需要参数和鼠标事件,$event是固定写法 -->
         <button @click="changeinfo(213,$event)">改变信息</button>
     </div>
 

@@ -7,15 +7,18 @@
     <title>Document</title>
 </head>
 
+
+<!-- 
+1.键值对的方式 key:value
+  value必须是字符串,否则会被Vue对象当成变量检查
+
+
+2.数组的方式 [data.style1,data.style2]
+ -->
+
 <body>
     <div id="app">
-
-
-        <!-- key:value -->
-        <!-- value必须是字符串,否则会被Vue对象当成变量检查 -->
         <li :style="{fontSize:'50px',color:'red'}">{{obj}}</li>
-
-        <!-- 数组对象方式 -->
         <li :style="[style1,style2]">{{arr}}</li>
     </div>
 </body>
