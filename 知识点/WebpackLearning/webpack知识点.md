@@ -129,3 +129,24 @@
         ```
 
     3. 重新`npm run build` ,生成的最终js文件就会转成es5代码
+
+- **配置Vue**
+    1. Vue引用方法
+        - 下载vue.js文件直接引用,
+        - 引用cdn中的静态vue.js
+        - 使用`npm install vue -save`命令安装vue到node_modules文件夹中
+
+    2. 在webpack.config.js文件夹中增加以下属性,让vue直接指向esm版本,否则在html中使用的templete不会被编译
+
+        ```js
+
+        resolve: {
+            alias: {
+            "vue$": "vue/dist/vue.esm.js"
+            }
+        }
+        ```
+
+    3. 最后就能在js文件中使用 `import Vue from "vue"`
+
+- **222**
