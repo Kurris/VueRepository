@@ -15,7 +15,7 @@ export default {
   data() {
     //这里存放数据
     return {
-      name: "这是测试组件.dsa",
+      name: "这是测试组件",
     };
   },
   //监听属性 类似于data概念

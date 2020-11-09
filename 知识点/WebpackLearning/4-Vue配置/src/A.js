@@ -21,4 +21,4 @@ new Vue({
     }
 });
 
-document.write("<button>热更新增加的</button>");
+document.write("a");

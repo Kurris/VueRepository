@@ -17,7 +17,7 @@ export default {
   components: {Cpn},
   data() {
     return {
-      btnName: "按钮名称......",
+      btnName: "按钮名称",
     };
   },
   //监听属性 类似于data概念
@@ -34,6 +34,6 @@ export default {
 <style scoped>
 
 .aaa{
-   color: yellow;
+   color: red;
 }
 </style>

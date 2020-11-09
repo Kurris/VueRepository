@@ -192,3 +192,23 @@
 
     3. package.json文件中的script增加 `"dev":"webpack-dev-server --open"`
     4. 最后使用`npm run dev` 启动,并且做热更新
+
+- **webpack.config.js分离**
+    1. 安装`npm install webpack-merge --save-dev`
+    2. 抽取共用部分放入base.config.js
+       抽取发布部分放入prod.config.js
+       抽取开发部分放入dev.config.js
+    3. 在prod和dev部分中引入公用部分和webpack-merge对象
+        `const baseConfig=require("路径")`
+        `const webpackMerge = require("webpack-merge")`
+
+    4. 使用
+
+        ```js
+       module.exports=webpackMerge.merge(baseConfig,{
+
+        });
+
+       ```
+
+    5. 修改公用部分的output地址!
