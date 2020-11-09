@@ -1,11 +1,14 @@
 const path = require("path");
+const webpack = require("webpack");
+const htmlWebpackPlugin = require("html-webpack-plugin");
+const uglifyjsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = {
     entry: "./src/A.js",
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "bundle.js",
-        publicPath: "dist/"
+        // publicPath: "./"
     },
     module: {
         rules: [{
@@ -25,6 +28,7 @@ module.exports = {
             use: [{
                 loader: 'url-loader',
                 options: {
+                    //字节大小
                     limit: 8192,
                     //命名规则
                     name: "img/[name].[hash:8].[ext]"
@@ -57,8 +61,20 @@ module.exports = {
         }, ]
     },
     resolve: {
+        extensions: [".vue", ".css", ".js"],
         alias: {
             "vue$": "vue/dist/vue.esm.js"
         }
+    },
+    plugins: [
+        new webpack.BannerPlugin("版权信息"),
+        new htmlWebpackPlugin({
+            template: "index.html"
+        }),
+        //new uglifyjsPlugin(),
+    ],
+    devServer: {
+        contentBase: "./dist",
+        inline: true
     }
 }

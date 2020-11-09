@@ -149,4 +149,46 @@
 
     3. 最后就能在js文件中使用 `import Vue from "vue"`
 
-- **222**
+- **在Vue文件中使用组件(使用Vue文件)**
+    1. 在webpack.config.js中的resolve增加`extensions: [".vue", ".css", ".js"],`
+       用于识别这些类型的文件,导入的时候不需要写后缀名
+
+    2. 在Vue文件中导入`import Cpn from "./Cpn"`,并且添加到组件中
+    3. 运行即可
+
+- **webpack的plugin**
+    1. BannerPlugin(版权信息,横幅):
+        - 在webpack.config.js中导入webpack对象`const webpack = require("webpack");`
+        - 在module.exports中增加属性`plugins:[new webpack.BannerPlugin("版权信息内容")]` ;
+
+    2. html-webpack-plugin(打包html代码到dist文件夹中):
+        - 安装html-webpack-plugin`npm install html-webpack-plugin@3.2.0`
+        - 在webpack.config.js中导入html-webpack-plugin对象`const htmlWebpackPlugin = require("html-webpack-plugin");`
+        - 属性`plugins`的数组增加
+
+            ```js
+            new htmlWebpackPlugin({
+                <!-- 使用根目录的index.html文件为模板,生成的html文件会自动引用bundle.js文件 -->
+            template: "index.html"
+            })
+            ```
+
+        - 将`output`的`publishPath`注释,因为自动生成的index.html文件会自动引用当前目录的bundle.js文件
+
+    3. uglifyjs-webpack-plugin(丑化js代码,压缩):
+        - 安装uglifyjs-webpack-plugin`置>npm install uglifyjs-webpack-plugin --save-dev`
+        - 在webpack.config.js中导入uglifyjs-webpack-plugin对象`const uglifyjsPlugin = require("uglifyjs-webpack-plugin");`
+
+- **搭建本地服务**
+    1. 安装`npm install webpack-dev-server@2.9.1 --save-dev`
+    2. 增加属性
+
+        ```js
+        devServer:{
+            contentBase:"./dist",  //指向index.html文件
+            inline:true,           //表示为开启热更新
+        }
+        ```
+
+    3. package.json文件中的script增加 `"dev":"webpack-dev-server --open"`
+    4. 最后使用`npm run dev` 启动,并且做热更新

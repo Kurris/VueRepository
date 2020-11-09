@@ -1,9 +1,9 @@
 // CommonJS的导入方法
 const { Add, Sub } = require("./js/B.js");
 
-console.log(Add(1, 2));
+// console.log(Add(1, 2));
 
-console.log(Sub(1, 2));
+// console.log(Sub(1, 2));
 
 
 import { name, age, Show } from "./js/C.js";
@@ -19,4 +19,6 @@ new Vue({
     components: {
         App
     }
-})
+});
+
+document.write("<button>热更新增加的</button>");
