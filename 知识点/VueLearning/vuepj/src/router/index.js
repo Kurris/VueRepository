@@ -23,10 +23,16 @@ const routes = [
 	{
 		path: '/User/:UserId',
 		component: User,
+		meta: {
+			title: '用户',
+		},
 	},
 	{
 		path: '/Home',
 		component: Home,
+		meta: {
+			title: '首页',
+		},
 		children: [
 			{
 				path: '',
@@ -45,10 +51,20 @@ const routes = [
 	{
 		path: '/About',
 		component: About,
+		meta: {
+			title: '关于',
+		},
+		beforeEnter: (to, from, next) => {
+			console.log('这里是About局部路由守卫');
+			next();
+		},
 	},
 	{
 		path: '/Profile',
 		component: Profile,
+		meta: {
+			title: '档案',
+		},
 	},
 ];
 
@@ -56,6 +72,13 @@ const router = new vueRouter({
 	routes,
 	mode: 'history',
 	linkActiveClass: 'active',
+});
+
+// 这里是路由守卫
+router.beforeEach((to, from, next) => {
+	document.title = to.matched[0].meta.title;
+	//没有next就不会进行下一步,类似于中间件
+	next();
 });
 
 export default router;

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <img alt="Vue logo" src="" />
     <HelloWorld :msg="aaa" />
 
     <router-link to="/Home">主页</router-link>

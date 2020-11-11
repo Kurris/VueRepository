@@ -9,11 +9,16 @@
 
 <script>
 export default {
-
-}
+  created() {
+    console.log("Home");
+  },
+  beforeRouteEnter(to, from, next) {
+    console.log("Home的组件路由守卫");
+    next();
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 </style>

@@ -90,5 +90,40 @@
   - 在使用时需要把父路由和子路由拼接一起
 
 - 路由传递参数
+
   - 通过占位符的参数方式 `/User/:UserId`,`$route.params.UserId`
   - 通过 query 的方式, `$route.query.参数名`
+
+- 路由守卫
+
+  > 组件之间的"中间件"
+
+  - 在`routes`数组中增加`meta`属性,增加`title`属性标记当前组件的标题,
+    在路由中使用:
+
+    ```js
+    // 这里是路由守卫
+    router.beforeEach((to, from, next) => {
+    	//修改标题
+    	document.title = to.matched[0].meta.title;
+    	//没有next就不会进行下一步,类似于中间件
+    	next();
+    });
+    ```
+
+  - 在`routes`数组中的组件注册路由时,实现`beforeEnter`方法
+
+    ```js
+    beforeEnter: (to, from, next) => {
+    	console.log('这里是About局部路由守卫');
+    	next();
+    },
+    ```
+
+  - 在组件自身实现`beforeRouteEnter`方法
+    ```js
+    beforeRouteEnter(to, from, next) {
+    console.log("Home的组件路由守卫");
+    next();
+    },
+    ```
