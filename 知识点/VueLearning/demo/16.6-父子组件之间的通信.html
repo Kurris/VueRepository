@@ -9,7 +9,8 @@
 
 <template id="tmp">
     <div>
-       <button v-for="item in categories" @click="dgametype=item.name">{{item.name}}</button>
+        <li>{{gametype}}</li>
+        <button v-for="item in categories" @click="dgametype=item.name">{{item.name}}</button>
     </div>
 </template>
 

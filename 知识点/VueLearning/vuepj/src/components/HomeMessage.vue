@@ -1,9 +1,9 @@
 <template>
   <div class="hello">
-    <h1>这是主页</h1>
-    <router-link to="/Home/News">新闻</router-link>
-    <router-link to="/Home/Message">消息</router-link>
-    <router-view></router-view>
+   <li>信息</li>
+   <li>信息</li>
+   <li>信息</li>
+   <li>信息</li>
   </div>
 </template>
 

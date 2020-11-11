@@ -1,15 +1,18 @@
 <template>
   <div class="hello">
-    <h1>这是主页</h1>
-    <router-link to="/Home/News">新闻</router-link>
-    <router-link to="/Home/Message">消息</router-link>
-    <router-view></router-view>
+    <h2>这是用户</h2>
+    <li>{{$route.params.UserId}}</li>
   </div>
 </template>
 
 <script>
 export default {
-
+name:'User',
+data() {
+  return {
+    uid:this.$route.params.UserId
+  }
+},
 }
 </script>
 

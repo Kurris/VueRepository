@@ -1,22 +1,45 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <router-view></router-view>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <HelloWorld :msg="aaa" />
+
     <router-link to="/Home">主页</router-link>
     <router-link to="/About">关于</router-link>
+    <router-link :to="'/User/' + uid">用户</router-link>
+    <!-- <router-link
+      :to="{ path: '/Profile', query: { name: 'ligy', age: 18, gender: '男' } }"
+      >档案</router-link
+    > -->
+
+    <button @click="profileClick">档案</button>
+
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      aaa: "Welcome to Your Vue.js App",
+      uid: "Ligy",
+    };
+  },
+  methods: {
+    profileClick() {
+      this.$router.replace({
+        path: "/Profile",
+        query: { name: "ligy", age: 18, gender: "男" },
+      });
+    },
+  },
   components: {
-    HelloWorld
-  }
-}
+    HelloWorld,
+  },
+};
 </script>
 
 <style>
@@ -29,8 +52,7 @@ export default {
   margin-top: 60px;
 }
 
-.active{
+.active {
   color: red;
 }
-
 </style>
