@@ -34,11 +34,11 @@ const routes = [
 			title: '首页',
 		},
 		children: [
-			{
-				path: '',
-				redirect: 'News',
-			},
-			{
+			// {
+			// 	path: '',
+			// 	redirect: 'News',
+			// },
+			{	
 				path: 'Message',
 				component: HomeMessage,
 			},

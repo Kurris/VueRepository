@@ -9,6 +9,7 @@
 
 <script>
 export default {
+  name: "Profile",
   components: {},
   data() {
     return {};

@@ -53,7 +53,7 @@
   - 要点说明
     - 使用 `router-link to='/Home'`标签属性 重定向到主页
     - 使用 `router-view` 标签 指示显示的位置
-    - 使用 `replace` 标签属性指定底层使用 `replaceState` 方法
+    - 使用 `replace` 标签属性指定底层使用 `history.replaceState(path)` 方法
     - 使用 `linkActiveClass: 'active'`的 `vue-router` 属性指定选中样式
     - 使用 `tag` 标签属性指示渲染的样式,例如渲染成 `button`/`li`
     - 使用 `this.$router.push/replace('/Home')`在代码中重定向
@@ -102,9 +102,9 @@
     在路由中使用:
 
     ```js
-    // 这里是路由守卫
+    // 这里是路由守卫,属于"全局路由入口"
     router.beforeEach((to, from, next) => {
-    	//修改标题
+    	//修改标题,这里使用matched[0]是因为可能存在嵌套路由
     	document.title = to.matched[0].meta.title;
     	//没有next就不会进行下一步,类似于中间件
     	next();
@@ -127,3 +127,38 @@
     next();
     },
     ```
+
+- 路由 Keep-alive
+
+  > 将路由保存存活状态,对组件只创建一次并缓存起来
+
+  - 使用`Keep-alive`标签将组件显示的`router-view`包括起来
+    ```html
+    <keep-alive>
+    	<router-view />
+    </keep-alive>
+    ```
+  - 增加组件数据属性`currentPath`赋予默认值,并且在组件中实现 `activated` 方法和 `beforeRouteLeave` 方法,记得将路由中的默认导航注释`redirect`
+
+    - 激活组件时,使用代码指定默认显示
+
+    ```js
+    activated() {
+    this.$router.push(this.currentPath);
+    },
+    ```
+
+    - 离开组件时,记录当前值
+
+    ```js
+    beforeRouteLeave(to, from, next) {
+    this.currentPath = this.$route.path;
+    next();
+    },
+    ```
+
+    - 这样就能实现 Keep-alive 的效果,当然,如果没有 Keep-alive 的标签,
+      `activated`和`deactivated`方法并不会实现
+
+  - 使用`exclude`/`include`,填入需要排除/包括KeepAlive的组件  
+    - 多个使用逗号隔开,中间不能有空格

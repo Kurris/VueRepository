@@ -13,7 +13,9 @@
 
     <button @click="profileClick">档案</button>
 
-    <router-view></router-view>
+    <keep-alive exclude="User">
+      <router-view />
+    </keep-alive>
   </div>
 </template>
 
@@ -30,10 +32,12 @@ export default {
   },
   methods: {
     profileClick() {
-      this.$router.replace({
-        path: "/Profile",
-        query: { name: "ligy", age: 18, gender: "男" },
-      });
+      if (this.$route.path != "/Profile") {
+        this.$router.replace({
+          path: "/Profile",
+          query: { name: "ligy", age: 18, gender: "男" },
+        });
+      }
     },
   },
   components: {
