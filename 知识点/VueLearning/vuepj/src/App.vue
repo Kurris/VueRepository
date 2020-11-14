@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="" />
-    <HelloWorld :msg="aaa" />
+    <button @click="$store.commit('add')">+</button>
+    <button @click="$store.commit('sub')">-</button>
+    <HelloWorld />
 
     <router-link to="/Home">主页</router-link>
     <router-link to="/About">关于</router-link>
@@ -26,7 +27,6 @@ export default {
   name: "App",
   data() {
     return {
-      aaa: "Welcome to Your Vue.js App",
       uid: "Ligy",
     };
   },

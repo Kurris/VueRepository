@@ -160,5 +160,38 @@
     - 这样就能实现 Keep-alive 的效果,当然,如果没有 Keep-alive 的标签,
       `activated`和`deactivated`方法并不会实现
 
-  - 使用`exclude`/`include`,填入需要排除/包括KeepAlive的组件  
+   <br>
+
+  - 使用`exclude`/`include`,填入需要排除/包括 KeepAlive 的组件
     - 多个使用逗号隔开,中间不能有空格
+
+## Vuex 状态管理(单例管理对象,可响应式)
+
+- 安装 `npm install vuex --save`
+- 创建文件夹``store,创建文件`index.js`
+
+  ```js
+  import Vue from 'vue';
+  import Vuex from 'vuex';
+  Vue.use(Vuex);
+
+  const store = new Vuex.Store({
+  	state: {
+  		counter: 10,
+  	},
+  	mutations: {
+  		add() {
+  			this.state.counter++;
+  		},
+  		sub() {
+  			this.state.counter--;
+  		},
+  	},
+  	actions: {},
+  	getters: {},
+  	modules: {},
+  });
+  export default store;
+  ```
+
+- 通过在`mutations`中定义方法修改状态(可被跟踪)

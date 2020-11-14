@@ -1,20 +1,20 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
+  <div class='hello'>
+    <h1>{{ $store.state.counter }}</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
-    msg: {
-      type:String,
-      default:'213',
-      require:true
-    }
+    msg: String, // {
+    //   type: String,
+    //   default:'213',
+    //   require:true
+    // },
   },
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

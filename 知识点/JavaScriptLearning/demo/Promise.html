@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+
+	<body></body>
+
+	<script>
+		new Promise((resolve, reject) => {
+			resolve('成功的数据');
+		})
+			.then(Success => {
+				console.log(Success);
+			})
+			.catch(error => {
+				console.log(error);
+			});
+
+		new Promise((resolve, reject) => {
+			reject('错误的数据');
+		}).then(
+			Success => {
+				console.log(Success);
+			},
+
+			error => {
+				console.log(error);
+			}
+		);
+
+		new Promise((resolve, reject) => {
+			resolve('1');
+		})
+			.then(res => {
+				return new Promise(resolve => {
+					resolve(res + '2');
+				});
+			})
+			.then(res => {
+				return res + '3';
+			})
+			.then(res => {
+				console.log(res + '4');
+			})
+			.catch(err => {
+				console.log(err);
+			});
+
+		Promise.all([
+			new Promise((s, e) => {
+				setTimeout(() => {
+					s('异步操作1');
+				}, 3000);
+			}),
+			new Promise((s, e) => {
+				setTimeout(() => {
+					s('异步操作2');
+				}, 1000);
+			}),
+		]).then(o => {
+			console.log(o);
+		});
+	</script>
+</html>
