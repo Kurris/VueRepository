@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <button @click="$store.commit('add')">+</button>
+    <button @click="$store.commit('add',5)">+</button>
     <button @click="$store.commit('sub')">-</button>
     <HelloWorld />
 

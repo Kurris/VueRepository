@@ -180,11 +180,14 @@
   		counter: 10,
   	},
   	mutations: {
-  		add() {
-  			this.state.counter++;
+  		add(state) {
+  			state.counter++;
   		},
-  		sub() {
-  			this.state.counter--;
+  		add(state, count) {
+  			state.counter + count;
+  		},
+  		sub(state) {
+  			state.counter--;
   		},
   	},
   	actions: {},
@@ -195,3 +198,15 @@
   ```
 
 - 通过在`mutations`中定义方法修改状态(可被跟踪)
+
+  - 无参数`$store.commit('add')`
+  - 带参数`$store.commit('add',5)`
+  - 另一种风格: 此时`mutations`的方法接受的参数为对象
+    ```js
+    $store.commit({
+    	type: 'add',
+    	count,
+    });
+    ```
+
+- getter 类似于自动属性

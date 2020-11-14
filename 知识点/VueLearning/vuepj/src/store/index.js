@@ -8,11 +8,11 @@ const store = new Vuex.Store({
 		counter: 10,
 	},
 	mutations: {
-		add() {
-			this.state.counter++;
+		add(state) {
+			state.counter++;
 		},
-		sub() {
-			this.state.counter--;
+		sub(state) {
+			state.counter--;
 		},
 	},
 	actions: {},
