@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <button @click="$store.commit('add',5)">+</button>
+    <button @click="$store.commit('add', 5)">+</button>
     <button @click="$store.commit('sub')">-</button>
+    <button @click="testAsyncByAction">测试异步action</button>
+    <button @click="$store.commit('testAsync')">测试异步</button>
+
     <HelloWorld />
 
     <router-link to="/Home">主页</router-link>
@@ -38,6 +41,12 @@ export default {
           query: { name: "ligy", age: 18, gender: "男" },
         });
       }
+    },
+    testAsyncByAction() {
+      this.$store.dispatch("atestAsync", "这里是异步处理内容")
+      .then((res) => {
+        console.log(res);
+      });
     },
   },
   components: {

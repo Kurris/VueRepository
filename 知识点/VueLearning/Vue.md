@@ -202,11 +202,19 @@
   - 无参数`$store.commit('add')`
   - 带参数`$store.commit('add',5)`
   - 另一种风格: 此时`mutations`的方法接受的参数为对象
+
     ```js
     $store.commit({
     	type: 'add',
     	count,
     });
     ```
+
+  - 如果`state`中存在数组数据,并且对它进行操作的时候,需要使用响应式方法
+
+    - 改变一个键的值 `Vue.set`
+    - 删除一个键 `Vue.delete`
+
+  - 在`mutations`中的方法必须为同步方法,否则 devtools 可能追踪不到数据变化
 
 - getter 类似于自动属性
