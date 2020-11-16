@@ -277,3 +277,50 @@
       },
       ```
     - `actions` 与`store`一致
+
+## AXIOS
+
+- 安装 `npm install axios`
+- get 请求
+
+  - 普通的请求方法
+
+  ```js
+  axios({
+  	url: 'http://123.207.32.32:8000/home/multidata',
+  }).then(res => {
+  	console.log(res);
+  });
+  ```
+
+  - 带参数的 get 请求
+
+  ```js
+  axios({
+  	url: 'http://123.207.32.32:8000/home/data',
+  	params: {
+  		参数名A: '',
+  		参数名B: '',
+  	},
+  }).then(res => {
+  	console.log(res);
+  });
+  ```
+
+  - 显式使用
+
+  ```js
+  axios.get({
+  	url: 'http://123.207.32.32:8000/home/data',
+  });
+  ```
+
+- 配置
+
+  - `axios.default.属性名=''`
+
+- 实例
+
+  - `axios.create()`
+
+- 拦截器
