@@ -189,8 +189,26 @@
   		sub(state) {
   			state.counter--;
   		},
+  		//此处使用setTimeout会有异步操作,devtools可能追踪不到变化结果
+  		testAsync(state) {
+  			setTimeout(() => {
+  				state.counter++;
+  			}, 1000);
+  		},
+  		testAsyncByAction(state) {
+  			state.counter++;
+  		},
   	},
-  	actions: {},
+  	actions: {
+  		atestAsync(context, payload) {
+  			return new Promise((resolve, reject) => {
+  				setTimeout(() => {
+  					context.commit('testAsyncByAction');
+  					resolve(payload);
+  				}, 2000);
+  			});
+  		},
+  	},
   	getters: {},
   	modules: {},
   });
@@ -199,6 +217,7 @@
 
 - 通过在`mutations`中定义方法修改状态(可被跟踪)
 
+  - 在`mutations`中的方法必须为同步方法,否则 devtools 可能追踪不到数据变化
   - 无参数`$store.commit('add')`
   - 带参数`$store.commit('add',5)`
   - 另一种风格: 此时`mutations`的方法接受的参数为对象
@@ -215,6 +234,8 @@
     - 改变一个键的值 `Vue.set`
     - 删除一个键 `Vue.delete`
 
-  - 在`mutations`中的方法必须为同步方法,否则 devtools 可能追踪不到数据变化
-
 - getter 类似于自动属性
+
+- Action 用于使用全局的异步方法
+  - 在 Action 中的方法可以接受到一个`context`的上下文对象,在方法中使用异步并且该对象可以用`commit`方法来触发`mutations`的同步方法进行回调修改
+  - 此处的异步方法可以被 Promise 包装起来
