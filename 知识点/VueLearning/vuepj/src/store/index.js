@@ -3,6 +3,23 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+const ModuleA = {
+	state: {
+		name: 'Ligy',
+	},
+	mutations: {
+		showName(state, payload) {
+			console.log(state.name + '  ' + payload);
+		},
+	},
+	getters: {
+		fullName(state, rootGetters, rootState) {
+			return state.name + rootGetters.counterAddOne + rootState.counter;
+		},
+	},
+	actions: {},
+};
+
 const store = new Vuex.Store({
 	state: {
 		counter: 10,
@@ -34,7 +51,13 @@ const store = new Vuex.Store({
 			});
 		},
 	},
-	getters: {},
-	modules: {},
+	getters: {
+		counterAddOne(state) {
+			return state.counter + 1;
+		},
+	},
+	modules: {
+		a: ModuleA,
+	},
 });
 export default store;

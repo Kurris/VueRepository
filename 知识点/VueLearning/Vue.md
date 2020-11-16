@@ -209,7 +209,11 @@
   			});
   		},
   	},
-  	getters: {},
+  	getters: {
+  		counterAddOne(state) {
+  			return state.counter + 1;
+  		},
+  	},
   	modules: {},
   });
   export default store;
@@ -234,8 +238,42 @@
     - 改变一个键的值 `Vue.set`
     - 删除一个键 `Vue.delete`
 
-- getter 类似于自动属性
+- `getters` 类似于自动属性
 
-- Action 用于使用全局的异步方法
+  - `this.$store.getters.counterAddOne`
+
+- `actions` 用于使用全局的异步方法
+
   - 在 Action 中的方法可以接受到一个`context`的上下文对象,在方法中使用异步并且该对象可以用`commit`方法来触发`mutations`的同步方法进行回调修改
   - 此处的异步方法可以被 Promise 包装起来
+
+- `modules`中可以使用与`store`一样的属性
+
+  ```js
+  const ModuleA = {
+  	state: {
+  		name: 'Ligy',
+  	},
+  	mutations: {
+  		showName(state, payload) {
+  			console.log(state.name + '  ' + payload);
+  		},
+  	},
+  	getters: {},
+  	actions: {},
+  };
+  ```
+
+  - 使用:
+
+    - `states`
+      `$store.state.a.name`
+    - `mutations` 用于与`store`中一样,先寻找`store`中的方法,再到`modues`中寻找
+      `$store.commit('方法名称')`
+    - `getters`
+      ```js
+      fullName(state, rootGetters, rootState) {
+      return state.name + rootGetters.counterAddOne + rootState.counter;
+      },
+      ```
+    - `actions` 与`store`一致

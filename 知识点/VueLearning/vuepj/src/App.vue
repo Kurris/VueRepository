@@ -1,9 +1,15 @@
 <template>
   <div id="app">
+    <!-- store的基本使用 -->
     <button @click="$store.commit('add', 5)">+</button>
     <button @click="$store.commit('sub')">-</button>
     <button @click="testAsyncByAction">测试异步action</button>
     <button @click="$store.commit('testAsync')">测试异步</button>
+
+    <!-- store中的module -->
+    <button @click="test">222</button>
+    <button @click="$store.commit('showName', '附加的名称')">显示名称</button>
+    <li>模块的getters{{ this.$store.getters.fullName }}</li>
 
     <HelloWorld />
 
@@ -43,10 +49,12 @@ export default {
       }
     },
     testAsyncByAction() {
-      this.$store.dispatch("atestAsync", "这里是异步处理内容")
-      .then((res) => {
+      this.$store.dispatch("atestAsync", "这里是异步处理内容").then((res) => {
         console.log(res);
       });
+    },
+    test() {
+      console.log("");
     },
   },
   components: {
