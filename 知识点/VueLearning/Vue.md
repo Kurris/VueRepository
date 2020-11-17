@@ -317,10 +317,31 @@
 
 - 配置
 
-  - `axios.default.属性名=''`
+  - `axios.defaults.属性名=''`
 
 - 实例
 
   - `axios.create()`
 
 - 拦截器
+
+  ```js
+  axios.interceptors.request.use(
+  	config => {
+  		// 请求前处理,如果不返回,则请求异常
+  		return config;
+  	},
+  	err => {
+  		console.log(err);
+  	}
+  );
+
+  axios.interceptors.response.use(
+  	config => {
+  		return config.data;
+  	},
+  	err => {
+  		console.log(err);
+  	}
+  );
+  ```
