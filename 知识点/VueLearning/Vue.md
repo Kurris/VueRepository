@@ -1,6 +1,239 @@
+[toc]
+
 # Vue 知识点
 
-## 脚手架
+### 基础语法
+
+- **初始化 Vue 对象**
+
+  - `html` 中使用 `Mustache` 语法获取 Vue 对象属性 `data` 的值;
+  - `el`挂载要管理的元素;
+  - `data`定义数据;
+
+  ```html
+  <div id="app">{{msg}}</div>
+  ```
+
+  ```js
+  const app = new Vue({
+  	el: '#app',
+  	data: {
+  		msg: 'Vue初体验',
+  		count: 0,
+  	},
+  });
+  ```
+
+- **循环**
+  - 基本使用 `v-for="item in 数组名称"` , `v-for="val,index in 数组名称"`
+  - 必须绑定 **key**
+- **声明周期函数(Vue 对象从诞生到销毁)**
+- **Mustache 语法(插值语法)**
+  - 一般使用 {{msg}} ,结果:Vue 初体验;
+  - 其他用法,使用简单运算 {{count+1}} ,结果:1;
+  - v-once 只会渲染一次,没有表达式;
+    - ```html
+      <div v-once id="app">{{msg}},个数{{count+1}}</div>
+      ```
+  - v-html,将`html`字符串解析;
+  - v-text="属性名" 等同于`Mustache`语法
+  - v-pre,不解析`Mustache`语法
+  - v-cloak,配合样式使用,当 `Vue` 对象没有初始化,将会使用该样式
+    ```css
+    [v-cloak] {
+    	display: none;
+    }
+    ```
+- **动态绑定属性 v-bind(简写使用 '<u>:</u>' )**
+
+  - 基本使用 `v-bind:src`,`v-bind:img`;
+  - `v-bind:class`,动态改变样式
+
+    - 对象语法
+      ```html
+      v-bind: class= "{active:true,key:value}";
+      ```
+    - 数组语法
+
+      ```html
+      v-bind: class= "[样式名称A,样式名称B]";
+      ```
+
+  - `v-bind:style`,动态改变样式与上述一样
+
+- **计算属性**
+  > 内部实现 getter(),get 和 setter(),set 方法,会有缓存
+  ```js
+  computed: {
+    fullName(){
+        //逻辑处理,返回结果
+        return xxxx;
+    }
+  }
+  ```
+- **事件监听**
+
+  - 基本使用 `v-on:click` 或者 `@click`
+  - 参数传递
+    - 无参数,方法不需要括号,默认传递点击事件对象`MouseEvent`
+    - 有参数,但是同时需要`MouseEvent`对象,方法执行时,必须使用`$event`表示`MouseEvent`对象;
+  - 修饰符
+    - .stop 阻止冒泡
+    - .once 只触发一次
+    - .prevent 阻止默认事件
+    - .enter/.a/.b 某个按键触发
+
+- **逻辑判断 v-if/v-elseif/v-else**
+
+  - `Vue`在满足条件时增减代码
+  - v-show `Vue`在满足条件时,对样式代码处理
+  - 使用`key`,取消`Vue`内部的算法复用
+
+- **数组中能够触发响应式的方法**
+
+  ```js
+  this.arr.push(2);
+  this.arr.pop(); //删除尾元素;
+  this.arr.shift(); //删除头元素
+  this.arr.unshift(5); //添加头元素
+  this.arr.splice(start, count, 元素); //删除/添加/替换
+  this.arr.sort(); //排序
+  this.arr.reverse(); //反转
+  Vue.set(obj,,,)
+  ```
+
+- **过滤器 filter**
+
+  ```html
+  <td>{{item.price|showfinal}}</td>
+  ```
+
+  ```js
+  filters: {
+          showfinal(price) {
+              return "¥" + price.toFixed(2);
+          }
+      }
+  ```
+
+- **双向绑定**
+  > 原理是内部使用了@input 和:value
+  - 基本使用 `v-model=""`,会自动绑定属性`Value`
+  - v-model:radio 绑定同一个属性,实现单选(原生是区分 `name` 属性)
+  - v-model:checkbox
+    - 场景:统一协议
+    - 多个选择,v-model 绑定数组
+  - v-model:select
+    - 单选,绑定一个属性即可
+    - 多选 `select` 标记`multiple`属性,绑定数组
+  - 修饰符
+    - lazy 在回车和失去焦点时才获取数据
+    - trim 将空格去掉
+    - number/string 数据类型转换
+
+### 组件化
+
+- 基本使用
+
+  ```html
+  <div id="app">
+  	<cpn></cpn>
+  </div>
+  ```
+
+  ```js
+  // 定义一个组件
+  const cpn = Vue.extend({
+  	template: `
+        <div>
+            <input type="text">
+        </div>
+        `,
+  });
+  // 注册全局组件
+  Vue.component('cpn', cpn);
+
+  //创建Vue对象,作用域是id为app的div
+  var a = new Vue({
+  	el: '#app ',
+  	data: {
+  		msg: 'AAA',
+  		age: 0,
+  	},
+  });
+  ```
+
+- 全局组件和局部组件
+
+  > 全局组件:直接在全局 Vue 对象注册
+  > 局部组件:在某一个 Vue 的对象中注册
+  > 在哪里注册,在哪里使用!!!!
+
+- 组件分离
+  > 使用<template id="app">标签定一个组件内容
+  > 注册
+- 组件 component 中的 data 属性必须是一个方法,因为组件涉及到复用,而方法返回的对象引用单独区分
+
+- 父子组件中的通信
+
+  - 在组件中的属性`props`中定义数据字段,用于获取父组件的信息
+  - 子组件使用`this.$emit("方法名称",数据)`发送一个方法给到父组件
+
+    ```html
+    <cpn @itemclick="pevent" :gametype="selectedgame"></cpn>
+    ```
+
+    ```js
+    props: {
+        gametype: {
+            type: String,
+            default: "无",
+        },
+    },
+    data() {
+    				return {
+    					dgametype: this.gametype,
+    				};
+    			},
+    watch: {
+    				dgametype(newval, oldval) {
+    					console.log(newval + '  ' + oldval);
+    					this.$emit('itemclick', newval);
+    				},
+    			},
+    ```
+
+- 父子组件之间直接访问
+
+  1. this.$children 访问当前所有子组件
+  2. this.$refs 访问所有子组件,如果在组件元素中标记 ref="key",可以用过 key 来查找特定子组件
+  3. this.$root 访问当前组件的根组件
+  4. this.$parent 访问当前的父组件
+
+- 插槽 Slot
+
+  - 基本使用,在组件`template`中使用`<slot>`标签
+  - 如果<slot>中可以添加默认样式
+  - 使用<slot name="a">标记插槽名称为"a",使用组件的时候<slot name="a"> <h2>Title1</h2></slot>
+  - 插槽作用域
+
+    ```html
+    <slot name="a" :zheshislotdata="arrlanguage">
+    	<ul>
+    		<li v-for="item in arrlanguage">{{item}}</li>
+    	</ul>
+    </slot>
+
+    <div slot="a" slot-scope="dataA">
+    	<li>{{dataA.zheshislotdata.join(" ⭐ ")}}</li>
+    </div>
+    ```
+
+    - 父组件改变子组件的数据展示方式
+    - `:zheshislotdata`是创造一个对外开放的属性
+    - `slot-scope="dataA"` 返回一个访问子组件开放的属性
+
+### 脚手架
 
 - 安装(全局) `npm install @vue/cli -g`
 
@@ -12,7 +245,7 @@
 
   2.  cli2 `vue init webpack proj-name`
 
-## Router
+### Router
 
 - 简单使用
 
@@ -27,7 +260,9 @@
     import Home from '../components/Home.vue';
     import About from '../components/About.vue';
 
+    //注册router
     vue.use(vueRouter);
+
     const routes = [
     	{
     		path: '',
@@ -73,8 +308,8 @@
     ```html
     <router-link :to="'/User/'+uid">用户</router-link>
     ```
-  - 在子组件 User 中的模板代码中使用`$route.params.UserId`获取
-    或者在代码中使用`t`his.\$route.params.UserId`
+  - 在子组件 User 中的模板代码`template`中使用`$route.params.UserId`获取
+    或者在代码中使用`this.\$route.params.UserId`
 
 - 懒加载路由
 
@@ -165,7 +400,7 @@
   - 使用`exclude`/`include`,填入需要排除/包括 KeepAlive 的组件
     - 多个使用逗号隔开,中间不能有空格
 
-## Vuex 状态管理(单例管理对象,可响应式)
+### Vuex 状态管理(单例管理对象,可响应式)
 
 - 安装 `npm install vuex --save`
 - 创建文件夹``store,创建文件`index.js`
@@ -278,7 +513,7 @@
       ```
     - `actions` 与`store`一致
 
-## AXIOS
+### AXIOS
 
 - 安装 `npm install axios`
 - get 请求

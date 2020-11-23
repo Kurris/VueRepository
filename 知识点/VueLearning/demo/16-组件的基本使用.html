@@ -1,41 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+	<body>
+		<div id="app">
+			<my-cpn></my-cpn>
+			<my-cpn></my-cpn>
+			<my-cpn></my-cpn>
+		</div>
+	</body>
 
-<body>
-    <div id="app">
-        <my-cpn></my-cpn>
-        <my-cpn></my-cpn>
-        <my-cpn></my-cpn>
-    </div>
-</body>
-
-<script src="./js/vue.js "></script>
-<script>
-    // 定义一个组件
-    const cpn = Vue.extend({
-        template: `
+	<script src="./js/vue.js "></script>
+	<script>
+		// 定义一个组件
+		const cpn = Vue.extend({
+			template: `
         <div>
             <input type="text">
         </div>
-        `
-    });
-    // 注册全局组件
-    Vue.component("my-cpn", cpn);
+        `,
+		});
+		// 注册全局组件
+		Vue.component('my-cpn', cpn);
 
-    //创建Vue对象,作用域是id为app的div
-    var a = new Vue({
-        el: "#app ",
-        data: {
-            msg: "AAA",
-            age: 0,
-        },
-    });
-</script>
-
+		//创建Vue对象,作用域是id为app的div
+		var a = new Vue({
+			el: '#app ',
+			data: {
+				msg: 'AAA',
+				age: 0,
+			},
+		});
+	</script>
 </html>

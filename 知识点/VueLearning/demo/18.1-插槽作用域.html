@@ -1,53 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+	<template id="tmp">
+		<div>
+			<slot name="a" :zheshislotdata="arrlanguage">
+				<ul>
+					<li v-for="item in arrlanguage">{{item}}</li>
+				</ul>
+			</slot>
+		</div>
+	</template>
 
+	<body>
+		<!--应用场景:当数据是存放在组件中,但是在父组件中,想要改变组件数据的展示方式-->
 
-<template id="tmp">
-<div>
-   <slot name="a" :data="arrlanguage">
-        <ul>
-            <li v-for="item in arrlanguage">{{item}}</li>
-        </ul>
-   </slot>
-</div>
-</template>
+		<!-- slot=“a”用于定位插槽 -->
+		<!-- slot-scope=“data”用于获取组件公开的数据，并且定义为data名称 -->
+		<div id="app">
+			<cpn>
+				<div slot="a" slot-scope="dataA">
+					<li>{{dataA.zheshislotdata.join(" ⭐ ")}}</li>
+				</div>
+			</cpn>
+		</div>
+	</body>
 
-<body>
-    <!--应用场景:当数据是存放在组件中,但是在父组件中,想要改变组件数据的展示方式-->
-
-    <!-- slot=“a”用于定位插槽 -->
-    <!-- slot-scope=“data”用于获取组件公开的数据，并且定义为data名称 -->
-    <div id="app">
-        <cpn>
-            <div slot="a" slot-scope="data">
-                <li>{{data.data.join(" ⭐ ")}}</li>
-            </div>
-        </cpn>
-    </div>
-
-</body>
-
-<script src="./js/vue.js "></script>
-<script>
-    var a = new Vue({
-        el: "#app ",
-        components: {
-            cpn: {
-                template: "#tmp",
-                data() {
-                    return {
-                        arrlanguage: ["Java", "C#", "C++", "Python"],
-                    }
-                },
-            }
-        }
-    });
-</script>
-
+	<script src="./js/vue.js "></script>
+	<script>
+		var a = new Vue({
+			el: '#app ',
+			components: {
+				cpn: {
+					template: '#tmp',
+					data() {
+						return {
+							arrlanguage: ['Java', 'C#', 'C++', 'Python'],
+						};
+					},
+				},
+			},
+		});
+	</script>
 </html>

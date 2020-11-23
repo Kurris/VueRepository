@@ -1,89 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+	<template id="tmp">
+		<div>
+			<li>{{gametype}}</li>
+			<button v-for="item in categories" @click="dgametype=item.name">{{item.name}}</button>
+		</div>
+	</template>
 
-<template id="tmp">
-    <div>
-        <li>{{gametype}}</li>
-        <button v-for="item in categories" @click="dgametype=item.name">{{item.name}}</button>
-    </div>
-</template>
+	<body>
+		<div id="app">
+			<!--@itemclick="pevent"       子传父  -->
+			<!-- :gametype="selectedgame" 父传子 -->
+			<cpn2 @itemclick="pevent" :gametype="selectedgame"></cpn2>
+			<h2>喜欢的游戏类型:{{selectedgame}}</h2>
+		</div>
+	</body>
 
-<body>
-    <div id="app">
-        <!--@itemclick="pevent"       子传父  -->
-        <!-- :gametype="selectedgame" 父传子 -->
-        <cpn2 @itemclick="pevent" :gametype="selectedgame"></cpn2>
-        <h2>喜欢的游戏类型:{{selectedgame}}</h2>
-    </div>
-</body>
+	<script src="./js/vue.js "></script>
+	<script>
+		const App = new Vue({
+			el: '#app',
+			data: {
+				selectedgame: 'FPS',
+			},
+			methods: {
+				pevent(item) {
+					this.selectedgame = item;
+				},
+			},
+			components: {
+				cpn2: {
+					template: '#tmp',
 
-<script src="./js/vue.js "></script>
-<script>
-    const App = new Vue({
-        el: "#app",
-        data: {
-            selectedgame: "FPS",
-        },
-        methods: {
-            pevent(item) {
-                this.selectedgame = item;
-            }
-        },
-        components: {
-            cpn2: {
-                template: "#tmp",
-
-                //父传子写法,通过props
-                props: {
-
-                    gametype: {
-                        type: String,
-                        default: "无",
-                    },
-                },
-                // {
-                //     t: String,
-                //     c: String,
-                // }, 
-                //["t", "c"],
-                // c: {
-                //     type: String, //如果此处是object类型,那么default必须返回一个对象
-                //     default () {
-                //         return "BBB"
-                //     },
-                //     required: true,
-                // }
-                data() {
-                    return {
-                        dgametype: this.gametype,
-                        categories: [{
-                            id: 0,
-                            name: "FPS"
-                        }, {
-                            id: 1,
-                            name: "ACT"
-                        }, {
-                            id: 2,
-                            name: "MOBA"
-                        }]
-                    }
-                },
-                // 监听dgametype属性
-                watch: {
-                    dgametype(newval, oldval) {
-                        console.log(newval + "  " + oldval);
-                        this.$emit('itemclick', newval)
-                    }
-                },
-            }
-        }
-    });
-</script>
-
+					//父传子写法,通过props
+					props: {
+						gametype: {
+							type: String,
+							default: '无',
+						},
+					},
+					// {
+					//     t: String,
+					//     c: String,
+					// },
+					//["t", "c"],
+					// c: {
+					//     type: String, //如果此处是object类型,那么default必须返回一个对象
+					//     default () {
+					//         return "BBB"
+					//     },
+					//     required: true,
+					// }
+					data() {
+						return {
+							dgametype: this.gametype,
+							categories: [
+								{
+									id: 0,
+									name: 'FPS',
+								},
+								{
+									id: 1,
+									name: 'ACT',
+								},
+								{
+									id: 2,
+									name: 'MOBA',
+								},
+							],
+						};
+					},
+					// 监听dgametype属性
+					watch: {
+						dgametype(newval, oldval) {
+							console.log(newval + '  ' + oldval);
+							this.$emit('itemclick', newval);
+						},
+					},
+				},
+			},
+		});
+	</script>
 </html>

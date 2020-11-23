@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<!-- 
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<!-- 
 
 1.先创建一个Vue对象,在Vue对象中的属性el中标记当前Vue对象的Div作用域
 2.data属性是用于存储信息
@@ -17,27 +16,25 @@
 
  -->
 
-<body>
-    <div id="app">
-        <li>{{msg}}</li>
-        <button v-on:click="changeinfo">改变信息</button>
-    </div>
+	<body>
+		<div id="app">
+			<li>{{msg}}</li>
+			<button v-on:click="changeinfo">改变信息</button>
+		</div>
+	</body>
 
-</body>
-
-<script src="./js/vue.js "></script>
-<script>
-    var a = new Vue({
-        el: "#app ",
-        data: {
-            msg: "信息显示"
-        },
-        methods: {
-            changeinfo: function() {
-                this.msg = "消息被改变"
-            }
-        },
-    });
-</script>
-
+	<script src="./js/vue.js "></script>
+	<script>
+		var a = new Vue({
+			el: '#app ',
+			data: {
+				msg: '信息显示',
+			},
+			methods: {
+				changeinfo: function () {
+					this.msg = '消息被改变';
+				},
+			},
+		});
+	</script>
 </html>
