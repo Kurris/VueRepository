@@ -1,5 +1,5 @@
 <template>
-  <div class="narbar">
+  <div class="navbar">
     <div class="left">
       <slot name="left"></slot>
     </div>
@@ -22,11 +22,11 @@ export default {
 };
 </script>
 <style scoped>
-.narbar {
+.navbar {
   display: flex;
   line-height: 44px;
   height: 44px;
-  box-shadow: 0 1px 1px rgba(100, 100, 100, .2)
+  box-shadow: 0 1px 1px rgba(100, 100, 100, 0.2);
 }
 
 .left,
