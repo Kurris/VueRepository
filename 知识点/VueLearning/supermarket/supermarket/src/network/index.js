@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export function http(config) {
-	const instance = axios.create(config);
+export default function http(config) {
+	const instance = axios.create();
 
 	instance.interceptors.request.use(
 		config => {
@@ -20,4 +20,6 @@ export function http(config) {
 			console.log(err);
 		}
 	);
+
+	return instance(config);
 }
